@@ -8,7 +8,9 @@ public class Player : MonoBehaviour {
     public AudioClip lifeUp;
     public AudioClip lifeDown;
     public AudioClip die;
-    private int lifes;
+	public int lifes;
+
+
     private AudioSource source;
     
 
@@ -83,5 +85,11 @@ public class Player : MonoBehaviour {
             source.PlayOneShot(lifeUp, vol);
             lifes++;
         }
+
+		if (other.gameObject.tag == "Win")
+		{
+			lifes = 3; 
+		}
+
     }
 }
