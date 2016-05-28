@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour {
         }
         else {
             difficultMenu.gameObject.SetActive(onclicked);
-            difficultMenu.gameObject.SetActive(true);
+            mainMenu.gameObject.SetActive(true);
         }
     }
 }
