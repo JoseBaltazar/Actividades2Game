@@ -50,22 +50,20 @@ public class Player : MonoBehaviour {
             source.PlayOneShot(playerStep, vol);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D)&& transform.position.x<9)
         {
             gameObject.transform.Translate(1, 0, 0);
             source.PlayOneShot(playerStep, vol);
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W)&& transform.position.z<9)
         {
-           
             gameObject.transform.Translate(0, 0, 1);
             source.PlayOneShot(playerStep, vol);
         }
 
         if (Input.GetKeyDown(KeyCode.S) && transform.position.z > 0)
         {
-
             gameObject.transform.Translate(0, 0, -1);
             source.PlayOneShot(playerStep, vol);
         }
