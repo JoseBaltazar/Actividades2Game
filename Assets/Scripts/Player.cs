@@ -8,7 +8,8 @@ public class Player : MonoBehaviour {
     public AudioClip lifeUp;
     public AudioClip lifeDown;
     public AudioClip die;
-	public int lifes;
+	public int lives;
+    public GUIText livesText;
 
 
     private AudioSource source;
@@ -18,9 +19,11 @@ public class Player : MonoBehaviour {
 
     void Start()
     {
+        lives = 3;
+        displayLives();
         source = GetComponent<AudioSource>();
 
-        lifes = 3;
+        lives = 3;
 
 
 
@@ -31,9 +34,9 @@ public class Player : MonoBehaviour {
 
 
 
-        Debug.Log("Vidas: " + lifes);
+        displayLives();
 
-        if (lifes <= 0) { 
+        if (lives <= 0) { 
         Debug.Log("GG");
         source.PlayOneShot(die, vol);
       }
@@ -78,18 +81,22 @@ public class Player : MonoBehaviour {
         if (other.gameObject.tag == "Enemy")
         {
             source.PlayOneShot(lifeDown, vol);
-            lifes--;
+            lives--;
         }
         if (other.gameObject.tag == "MasVida")
         {
             source.PlayOneShot(lifeUp, vol);
-            lifes++;
+            lives++;
         }
 
 		if (other.gameObject.tag == "Win")
 		{
-			lifes = 3; 
+			lives = 3; 
 		}
 
+    }
+    void displayLives()
+    {
+        livesText.text = "Lives: " + lives;
     }
 }
