@@ -8,8 +8,8 @@ public class Player : MonoBehaviour {
     public AudioClip lifeUp;
     public AudioClip lifeDown;
     public AudioClip die;
-	public int lives;
-    public GUIText livesText;
+	public int lives, points;
+    public GUIText livesText, pointsText;
 
 
     private AudioSource source;
@@ -20,22 +20,18 @@ public class Player : MonoBehaviour {
     void Start()
     {
         lives = 3;
+        points = 0;
         displayLives();
+        displayPoints();
         source = GetComponent<AudioSource>();
 
         lives = 3;
-
-
-
     }
 
     void Update()
     {
-
-
-
         displayLives();
-
+        displayPoints();
         if (lives <= 0) { 
         Debug.Log("GG");
         source.PlayOneShot(die, vol);
@@ -76,7 +72,7 @@ public class Player : MonoBehaviour {
 
     }
 
-    void OntriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
@@ -93,10 +89,21 @@ public class Player : MonoBehaviour {
 		{
 			lives = 3; 
 		}
+        if (other.transform.tag=="PointX1")
+        {
+            points++;
+            Destroy(other.gameObject);
+        }
 
     }
     void displayLives()
     {
         livesText.text = "Lives: " + lives;
     }
+    void displayPoints()
+    {
+        pointsText.text = "Points: " + points;
+    }
+
+
 }
